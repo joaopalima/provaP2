@@ -73,7 +73,7 @@ public class ImovelDAO implements IDAO {
             return imovels;
                         
         } catch (Exception e) {
-            throw new SQLException("Erro ao tentar listar a imovel. \n" + e.getMessage());
+            throw new SQLException("Erro ao tentar listar imovel. \n" + e.getMessage());
         }
         
     }

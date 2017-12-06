@@ -323,9 +323,10 @@ public class ImovelGUI extends javax.swing.JFrame {
 
     private void cboTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboTipoActionPerformed
         // TODO add your handling code here:
-        Imovel r = (Imovel) cboTipo.getSelectedItem();
+//        Imovel r = (Imovel) cboTipo.getSelectedItem();
 
 //        txtNome.setValue(r.getNome());
+
     }//GEN-LAST:event_cboTipoActionPerformed
 
     /**
