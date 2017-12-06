@@ -8,6 +8,7 @@ package br.rj.macae.femass.imovel.gui;
 
 import br.rj.macae.femass.imovel.controle.ImovelControle;
 import br.rj.macae.femass.imovel.entidade.Imovel;
+import br.rj.macae.femass.imovel.entidade.Tipo_Imovel;
 import static java.lang.System.exit;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
@@ -271,6 +272,7 @@ public class ImovelGUI extends javax.swing.JFrame {
         Imovel r = new Imovel();
         r.setNome(txtNome.getText());
         r.setDescricao(txtDescricao.getText());
+//        r.setTipo_imovel((Tip_imovel) cboTipo.getSelectedItem());
         if(lstImovels.getSelectedIndex()>=0){
             r.setId(((Imovel)lstImovels.getSelectedValue()).getId());
         }
