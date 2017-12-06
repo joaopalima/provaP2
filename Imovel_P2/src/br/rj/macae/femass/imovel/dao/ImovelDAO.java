@@ -29,21 +29,21 @@ public class ImovelDAO implements IDAO {
     
     @Override
     public void cadastrar(Object o) throws SQLException {
-            Imovel c = (Imovel)o;
-            EntityManager em = FabricaConexao.getConexao().createEntityManager();
-            em.getTransaction().begin();
-            em.persist(c);
-            em.getTransaction().commit();
-            em.close();
+        Imovel c = (Imovel)o;
+        EntityManager em = FabricaConexao.getConexao().createEntityManager();
+        em.getTransaction().begin();
+        em.persist(c);
+        em.getTransaction().commit();
+        em.close();
         
     }
 
      @Override
     public void alterar(Object o) throws SQLException {
-        Imovel categoria = (Imovel) o;               
+        Imovel imovel = (Imovel) o;               
         EntityManager em = FabricaConexao.getConexao().createEntityManager();
         em.getTransaction().begin();
-        em.merge(categoria);
+        em.merge(imovel);
         em.getTransaction().commit();
         em.close();
       
@@ -52,11 +52,11 @@ public class ImovelDAO implements IDAO {
 
      @Override
     public void excluir(Object o) throws SQLException {
-        Imovel categoria = (Imovel) o;               
+        Imovel imovel = (Imovel) o;               
         EntityManager em = FabricaConexao.getConexao().createEntityManager();
         em.getTransaction().begin();
-        categoria = em.merge(categoria);
-        em.remove(categoria);
+        imovel = em.merge(imovel);
+        em.remove(imovel);
         em.getTransaction().commit();
         em.close();
         
@@ -68,9 +68,9 @@ public class ImovelDAO implements IDAO {
         try {
             EntityManager em = FabricaConexao.getConexao().createEntityManager();
             TypedQuery<Imovel> consulta = em.createQuery("SELECT c FROM Imovel c",Imovel.class);
-            List<Imovel> categorias = consulta.getResultList();
+            List<Imovel> imovels = consulta.getResultList();
             em.close();
-            return categorias;
+            return imovels;
                         
         } catch (Exception e) {
             throw new SQLException("Erro ao tentar listar a imovel. \n" + e.getMessage());

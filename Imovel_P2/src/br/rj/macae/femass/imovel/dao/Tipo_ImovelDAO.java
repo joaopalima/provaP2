@@ -6,7 +6,8 @@ package br.rj.macae.femass.imovel.dao;
 
 
 
-import br.rj.macae.femass.imovel.entidade.Imovel;
+
+import br.rj.macae.femass.imovel.entidade.Tipo_Imovel;
 import java.io.IOException;
 
 import java.sql.Connection;
@@ -29,21 +30,21 @@ public class Tipo_ImovelDAO implements IDAO {
     
     @Override
     public void cadastrar(Object o) throws SQLException {
-            Imovel c = (Imovel)o;
-            EntityManager em = FabricaConexao.getConexao().createEntityManager();
-            em.getTransaction().begin();
-            em.persist(c);
-            em.getTransaction().commit();
-            em.close();
+        Tipo_Imovel c = (Tipo_Imovel)o;
+        EntityManager em = FabricaConexao.getConexao().createEntityManager();
+        em.getTransaction().begin();
+        em.persist(c);
+        em.getTransaction().commit();
+        em.close();
         
     }
 
      @Override
     public void alterar(Object o) throws SQLException {
-        Imovel categoria = (Imovel) o;               
+        Tipo_Imovel tipo_imovel = (Tipo_Imovel) o;               
         EntityManager em = FabricaConexao.getConexao().createEntityManager();
         em.getTransaction().begin();
-        em.merge(categoria);
+        em.merge(tipo_imovel);
         em.getTransaction().commit();
         em.close();
       
@@ -52,11 +53,11 @@ public class Tipo_ImovelDAO implements IDAO {
 
      @Override
     public void excluir(Object o) throws SQLException {
-        Imovel categoria = (Imovel) o;               
+        Tipo_Imovel tipo_imovel = (Tipo_Imovel) o;               
         EntityManager em = FabricaConexao.getConexao().createEntityManager();
         em.getTransaction().begin();
-        categoria = em.merge(categoria);
-        em.remove(categoria);
+        tipo_imovel = em.merge(tipo_imovel);
+        em.remove(tipo_imovel);
         em.getTransaction().commit();
         em.close();
         
@@ -67,10 +68,10 @@ public class Tipo_ImovelDAO implements IDAO {
         
         try {
             EntityManager em = FabricaConexao.getConexao().createEntityManager();
-            TypedQuery<Imovel> consulta = em.createQuery("SELECT c FROM Imovel c",Imovel.class);
-            List<Imovel> categorias = consulta.getResultList();
+            TypedQuery<Tipo_Imovel> consulta = em.createQuery("SELECT c FROM Tipo_Imovel c",Tipo_Imovel.class);
+            List<Tipo_Imovel> tipo_imovels = consulta.getResultList();
             em.close();
-            return categorias;
+            return tipo_imovels;
                         
         } catch (Exception e) {
             throw new SQLException("Erro ao tentar listar tipo do imovel. \n" + e.getMessage());
