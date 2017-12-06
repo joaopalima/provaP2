@@ -6,8 +6,8 @@
 package br.rj.macae.femass.imovel.gui;
 
 
-import br.rj.macae.femass.imovel.controle.ImovelControle;
-import br.rj.macae.femass.imovel.entidade.Imovel;
+import br.rj.macae.femass.imovel.controle.Tipo_ImovelControle;
+import br.rj.macae.femass.imovel.entidade.Tipo_Imovel;
 import static java.lang.System.exit;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
@@ -19,7 +19,7 @@ import javax.swing.JOptionPane;
 public class Tipo_ImovelGUI extends javax.swing.JFrame {
 
     /**
-     * Creates new form ImovelGUI
+     * Creates new form Tipo_ImovelGUI
      */
     public Tipo_ImovelGUI() {
         initComponents();
@@ -40,7 +40,7 @@ public class Tipo_ImovelGUI extends javax.swing.JFrame {
         txtDescricao = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        lstImovels = new javax.swing.JList<>();
+        lstTipos = new javax.swing.JList<>();
         btnNovo = new javax.swing.JButton();
         btnAlterar = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
@@ -72,12 +72,12 @@ public class Tipo_ImovelGUI extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Malgun Gothic", 1, 14)); // NOI18N
         jLabel5.setText("TIPO DE IMÓVEL");
 
-        lstImovels.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+        lstTipos.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
-                lstImovelsValueChanged(evt);
+                lstTiposValueChanged(evt);
             }
         });
-        jScrollPane1.setViewportView(lstImovels);
+        jScrollPane1.setViewportView(lstTipos);
 
         btnNovo.setFont(new java.awt.Font("Malgun Gothic", 0, 11)); // NOI18N
         btnNovo.setText("Novo");
@@ -203,15 +203,15 @@ public class Tipo_ImovelGUI extends javax.swing.JFrame {
 
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
         txtNome.requestFocus(true);
-        lstImovels.clearSelection();
+        lstTipos.clearSelection();
         limparCampos();
         habilitarCampos();// TODO add your handling code here:
     }//GEN-LAST:event_btnNovoActionPerformed
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
         
-        if(lstImovels.isSelectionEmpty()){
-        JOptionPane.showMessageDialog(this, "Selecione um imóvel da lista para alterar");
+        if(lstTipos.isSelectionEmpty()){
+        JOptionPane.showMessageDialog(this, "Selecione tipo do imóvel da lista para alterar");
         return;
         }
         txtNome.requestFocus(true);
@@ -232,9 +232,9 @@ public class Tipo_ImovelGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowOpened
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
-        ImovelControle controle = new ImovelControle();
+        Tipo_ImovelControle controle = new Tipo_ImovelControle();
         try {
-            controle.atualizarListaImovels(lstImovels);
+            controle.atualizarListaTipo_Imovels(lstTipos);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
         }        // TODO add your handling code here:
@@ -246,14 +246,14 @@ public class Tipo_ImovelGUI extends javax.swing.JFrame {
         return;
         }
         try{
-        ImovelControle controle = new ImovelControle();
-        Imovel r = new Imovel();
+        Tipo_ImovelControle controle = new Tipo_ImovelControle();
+        Tipo_Imovel r = new Tipo_Imovel();
         r.setNome(txtNome.getText());
         r.setDescricao(txtDescricao.getText());
-        if(lstImovels.getSelectedIndex()>=0){
-            r.setId(((Imovel)lstImovels.getSelectedValue()).getId());
+        if(lstTipos.getSelectedIndex()>=0){
+            r.setId(((Tipo_Imovel)lstTipos.getSelectedValue()).getId());
         }
-        controle.gravar(r, lstImovels);
+        controle.gravar(r, lstTipos);
         JOptionPane.showMessageDialog(this, "Gravado com sucesso.");
         limparCampos();
         desabilitarCampos();
@@ -263,29 +263,29 @@ public class Tipo_ImovelGUI extends javax.swing.JFrame {
         }        // TODO add your handling code here:
     }//GEN-LAST:event_btnGravarActionPerformed
 
-    private void lstImovelsValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstImovelsValueChanged
-        Imovel r = new Imovel();    
-        r = (Imovel)lstImovels.getSelectedValue();
+    private void lstTiposValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstTiposValueChanged
+        Tipo_Imovel r = new Tipo_Imovel();    
+        r = (Tipo_Imovel)lstTipos.getSelectedValue();
 
         if (r==null) return;
         txtNome.setText(r.getNome());
         txtDescricao.setText(r.getDescricao());
                 // TODO add your handling code here:
-    }//GEN-LAST:event_lstImovelsValueChanged
+    }//GEN-LAST:event_lstTiposValueChanged
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-        if(lstImovels.isSelectionEmpty()){
-        JOptionPane.showMessageDialog(this, "Selecione uma imóvel da lista para excluir");
+        if(lstTipos.isSelectionEmpty()){
+        JOptionPane.showMessageDialog(this, "Selecione tipo do imóvel da lista para excluir");
         return;
         }
         
         try{
-        ImovelControle controle = new ImovelControle();
-        Imovel r = new Imovel();
-        if(lstImovels.getSelectedIndex()>=0){
-            r.setId(((Imovel)lstImovels.getSelectedValue()).getId());
+        Tipo_ImovelControle controle = new Tipo_ImovelControle();
+        Tipo_Imovel r = new Tipo_Imovel();
+        if(lstTipos.getSelectedIndex()>=0){
+            r.setId(((Tipo_Imovel)lstTipos.getSelectedValue()).getId());
         }
-        controle.excluir(r, lstImovels);        
+        controle.excluir(r, lstTipos);        
         limparCampos();
         desabilitarCampos();
         
@@ -349,7 +349,7 @@ public class Tipo_ImovelGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JList<Object> lstImovels;
+    private javax.swing.JList<Object> lstTipos;
     private javax.swing.JTextField txtDescricao;
     private javax.swing.JTextField txtNome;
     // End of variables declaration//GEN-END:variables
@@ -365,7 +365,7 @@ private void habilitarCampos() {
         txtDescricao.setEditable(true);
         btnGravar.setVisible(true);
         btnCancelar.setVisible(true);
-        lstImovels.setEnabled(false);    
+        lstTipos.setEnabled(false);    
     }
 
 private void desabilitarCampos() {
@@ -374,7 +374,7 @@ private void desabilitarCampos() {
         txtDescricao.setEditable(false);
         btnGravar.setVisible(false);
         btnCancelar.setVisible(false);
-        lstImovels.setEnabled(true);
+        lstTipos.setEnabled(true);
     }
 
 }

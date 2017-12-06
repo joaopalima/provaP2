@@ -25,6 +25,7 @@ public class Tipo_Imovel implements Serializable {
     private Long id;
     
     private String nome;
+    private String descricao;
 
     @ManyToOne(targetEntity = Imovel.class)
     private Imovel imovel;
@@ -37,6 +38,23 @@ public class Tipo_Imovel implements Serializable {
         this.nome = nome;
     }
 
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public Imovel getImovel() {
+        return imovel;
+    }
+
+    public void setImovel(Imovel imovel) {
+        this.imovel = imovel;
+    }
+
+    
     public Long getId() {
         return id;
     }

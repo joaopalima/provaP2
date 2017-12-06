@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -26,6 +27,18 @@ public class Imovel implements Serializable {
     private String nome;
     private String descricao;
 
+    @ManyToOne(targetEntity = Imovel.class)
+    private Tipo_Imovel tipo;
+
+    public Tipo_Imovel getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(Tipo_Imovel tipo) {
+        this.tipo = tipo;
+    }
+    
+    
     public String getNome() {
         return nome;
     }

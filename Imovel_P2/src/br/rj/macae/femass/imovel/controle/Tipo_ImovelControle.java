@@ -7,8 +7,8 @@ package br.rj.macae.femass.imovel.controle;
 
 
 
-import br.rj.macae.femass.imovel.dao.ImovelDAO;
-import br.rj.macae.femass.imovel.entidade.Imovel;
+import br.rj.macae.femass.imovel.dao.Tipo_ImovelDAO;
+import br.rj.macae.femass.imovel.entidade.Tipo_Imovel;
 import java.sql.SQLException;
 import java.util.List;
 import javax.swing.JList;
@@ -19,35 +19,35 @@ import javax.swing.JList;
  */
 public class Tipo_ImovelControle {
     
-    public void gravar(Imovel r, JList listaImovels) throws SQLException{
+    public void gravar(Tipo_Imovel r, JList listaTipo_Imovels) throws SQLException{
         if(r.getId()==null || r.getId()<=0){
-            cadastrar(r, listaImovels);
+            cadastrar(r, listaTipo_Imovels);
         }else{
-            alterar(r, listaImovels);
+            alterar(r, listaTipo_Imovels);
         }
     }
-    private void cadastrar(Imovel r, JList listaImovels) throws SQLException{
-        ImovelDAO dao = new ImovelDAO();
+    private void cadastrar(Tipo_Imovel r, JList listaTipo_Imovels) throws SQLException{
+        Tipo_ImovelDAO dao = new Tipo_ImovelDAO();
         dao.cadastrar(r);
         List categorias = dao.listarTodos();
-        listaImovels.setListData(categorias.toArray());
+        listaTipo_Imovels.setListData(categorias.toArray());
     }
-    private void alterar(Imovel r, JList listaImovels) throws SQLException{
-        ImovelDAO dao = new ImovelDAO();
+    private void alterar(Tipo_Imovel r, JList listaTipo_Imovels) throws SQLException{
+        Tipo_ImovelDAO dao = new Tipo_ImovelDAO();
         dao.alterar(r);
         List categorias = dao.listarTodos();
-        listaImovels.setListData(categorias.toArray());
+        listaTipo_Imovels.setListData(categorias.toArray());
     }
-    public void excluir(Imovel r, JList listaImovels) throws SQLException{
-        ImovelDAO dao = new ImovelDAO();
+    public void excluir(Tipo_Imovel r, JList listaTipo_Imovels) throws SQLException{
+        Tipo_ImovelDAO dao = new Tipo_ImovelDAO();
         dao.excluir(r);
         List categorias = dao.listarTodos();
-        listaImovels.setListData(categorias.toArray());
+        listaTipo_Imovels.setListData(categorias.toArray());
     }
-    public void atualizarListaImovels(JList listaImovels) throws SQLException{
-        ImovelDAO dao = new ImovelDAO();        
+    public void atualizarListaTipo_Imovels(JList listaTipo_Imovels) throws SQLException{
+        Tipo_ImovelDAO dao = new Tipo_ImovelDAO();        
         List categorias = dao.listarTodos();
-        listaImovels.setListData(categorias.toArray());
+        listaTipo_Imovels.setListData(categorias.toArray());
     }
     
     

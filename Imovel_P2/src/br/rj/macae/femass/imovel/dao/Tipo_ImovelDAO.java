@@ -73,7 +73,7 @@ public class Tipo_ImovelDAO implements IDAO {
             return categorias;
                         
         } catch (Exception e) {
-            throw new SQLException("Erro ao tentar listar a categoria. \n" + e.getMessage());
+            throw new SQLException("Erro ao tentar listar tipo do imovel. \n" + e.getMessage());
         }
         
     }
