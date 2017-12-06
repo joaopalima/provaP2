@@ -385,8 +385,6 @@ public class ImovelGUI extends javax.swing.JFrame {
 private void limparCampos() {
         txtNome.setText("");
         txtDescricao.setText("");
-       
-        
     }
 private void habilitarCampos() {
         txtNome.setEditable(true);
