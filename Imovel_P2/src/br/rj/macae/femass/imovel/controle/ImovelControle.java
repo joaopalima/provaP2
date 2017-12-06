@@ -29,25 +29,25 @@ public class ImovelControle {
     private void cadastrar(Imovel r, JList listaImovels) throws SQLException{
         ImovelDAO dao = new ImovelDAO();
         dao.cadastrar(r);
-        List categorias = dao.listarTodos();
-        listaImovels.setListData(categorias.toArray());
+        List imovels = dao.listarTodos();
+        listaImovels.setListData(imovels.toArray());
     }
     private void alterar(Imovel r, JList listaImovels) throws SQLException{
         ImovelDAO dao = new ImovelDAO();
         dao.alterar(r);
-        List categorias = dao.listarTodos();
-        listaImovels.setListData(categorias.toArray());
+        List imovels = dao.listarTodos();
+        listaImovels.setListData(imovels.toArray());
     }
     public void excluir(Imovel r, JList listaImovels) throws SQLException{
         ImovelDAO dao = new ImovelDAO();
         dao.excluir(r);
-        List categorias = dao.listarTodos();
-        listaImovels.setListData(categorias.toArray());
+        List imovels = dao.listarTodos();
+        listaImovels.setListData(imovels.toArray());
     }
     public void atualizarListaImovels(JList listaImovels) throws SQLException{
         ImovelDAO dao = new ImovelDAO();        
-        List categorias = dao.listarTodos();
-        listaImovels.setListData(categorias.toArray());
+        List imovels = dao.listarTodos();
+        listaImovels.setListData(imovels.toArray());
     }
     
     
